@@ -7,15 +7,18 @@ public class Campo {
 // diferente = navio
 
     private static int[][] mapa;
+    private static int[][] mapaJogador;
     private static int quantidadeNavio = 0;
     private static int jogadas;
     private Scanner teclado = new Scanner(System.in);
 
     public Campo() {
         mapa = new int[10][10];
+        mapaJogador = new int[10][10];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 mapa[i][j] = 0;
+                mapaJogador[i][j] = 0;
             }
         }
         addNavio();
@@ -39,9 +42,9 @@ public class Campo {
         int x = teclado.nextInt();
         int y = teclado.nextInt();
         if (verificaNavio(x, y) != 0) {
-            mapa[x][y] = verificaNavio(x, y);
+            mapaJogador[x][y] = verificaNavio(x, y);
         } else {
-            mapa[x][y] = -1;
+            mapaJogador[x][y] = -1;
         }
     }
 //------------------------------------------------------------------------------------------------
