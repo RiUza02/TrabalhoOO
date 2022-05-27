@@ -1,7 +1,7 @@
 
 public class Navio {
 
-    private int tamanho;
+    private final int tamanho;
     private int xPosicao;
     private int yPosicao;
 
