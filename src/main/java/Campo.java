@@ -5,7 +5,7 @@ public class Campo {
 
     private static final int t = 10; //tamanho do campo (caso queira ajustar depois)
     private static final int agua = 0; //simbulo que representara agua
-    private static int quantidadeNavio = 3; //quantidade de navios a ser colocada no mapa
+    private static int quantidadeNavio = 5; //quantidade de navios a ser colocada no mapa
     private int[][] mapa; //mapa que sera manipulado pelo programa
     private int[][] mapaJogador; //mapa que sera manipulado pelo jogador
     private int jogadas; //jogadas permitidas
@@ -28,9 +28,24 @@ public class Campo {
     }
 
     public void imprime() {
+        System.out.print("   ");
+        for(int i = 1; i < 11; i++){
+            System.out.print(i + "  ");
+        }
+        System.out.println("");
         for (int i = 0; i < t; i++) {
+            System.out.print(i + "| ");
             for (int j = 0; j < t; j++) {
                 System.out.print(mapa[i][j] + "  "); //ajustar qual mapa sera imprimido depois
+            }
+            System.out.println();
+        }
+    }
+    
+    public void imprimeMapaJogador() { //Implementei só pra teste, depois vemos oque fazer @Victor
+        for (int i = 0; i < t; i++) {
+            for (int j = 0; j < t; j++) {
+                System.out.print(mapaJogador[i][j] + "  "); 
             }
             System.out.println();
         }
@@ -43,7 +58,7 @@ public class Campo {
         System.out.println();
         System.out.print("y: ");
         int y = teclado.nextInt();
-        if (verificaNavio(x, y) != agua) {
+        if (verificaNavio(y, x) != agua) {
             mapaJogador[x][y] = verificaNavio(x, y);
         } else {
             mapaJogador[x][y] = -1;
@@ -89,11 +104,57 @@ public class Campo {
     private boolean verificaNavioPosicao(Navio navio, int direcao) {
         switch (navio.getTamanho()) {
             case 2 -> {
+                switch (direcao) {
+                    case 0 -> {
+                        if (navio.getx() + 1 < t) {
+                            for (int i = 0; i < 2; i++) {
+                                if (mapa[navio.getx() + i][navio.gety()] != agua) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                    case 1 -> {
+                        if (navio.gety() + 1 < t) {
+                            for (int i = 0; i < 2; i++) {
+                                if (mapa[navio.getx()][navio.gety() + i] != agua) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+
+                    }
+                }
 
             }
 
             case 3 -> {
+                switch (direcao) {
+                    case 0 -> {
+                        if (navio.getx() + 2 < t) {
+                            for (int i = 0; i < 3; i++) {
+                                if (mapa[navio.getx() + i][navio.gety()] != agua) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                    case 1 -> {
+                        if (navio.gety() + 2 < t) {
+                            for (int i = 0; i < 3; i++) {
+                                if (mapa[navio.getx()][navio.gety() + i] != agua) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
 
+                    }
+
+                }
             }
 
             case 4 -> {
