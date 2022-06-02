@@ -6,24 +6,26 @@ public class Jogo {
     private int jogadas;
     private Campo campo = new Campo();
     private final Scanner teclado = new Scanner(System.in);
+    private static int rest;
 
     public Jogo() {
         setDificuldade();
     }
 
     private void setDificuldade() {
-        int dificuldade, quantidade;
+        int quantidade;
+        char dificuldade;
         System.out.println("Escolha a dificuldade: \n"
-                + "0: facil \n"
-                + "1: medio \n"
-                + "2: dificil");
-        dificuldade = teclado.nextInt();
+                + "F: facil \n"
+                + "M: medio \n"
+                + "D: dificil");
+        dificuldade = Character.toUpperCase(teclado.next().charAt(0));
 
         System.out.println("Escolha a quantidade de alvos (entre 1 e 15)");
         quantidade = teclado.nextInt();
         switch (dificuldade) {
-            case 0 -> {
-                if (quantidade <= 15 && quantidade >= 1) {
+            case 'F' -> {
+                if (quantidade <= 15 & quantidade >= 1) {
                     Campo.quantidadeNavio(quantidade);
                     jogadas = 15 * quantidade;
                 } else {
@@ -31,16 +33,16 @@ public class Jogo {
                 }
             }
 
-            case 1 -> {
-                if (quantidade <= 15 && quantidade >= 1) {
+            case 'M' -> {
+                if (quantidade <= 15 & quantidade >= 1) {
                     Campo.quantidadeNavio(quantidade);
                     jogadas = 10 * quantidade;
                 } else {
                     System.out.println("valor invalido");
                 }
             }
-            case 2 -> {
-                if (quantidade <= 15 && quantidade >= 1) {
+            case 'D' -> {
+                if (quantidade <= 15 & quantidade >= 1) {
                     jogadas = 7 * quantidade;
                     Campo.quantidadeNavio(quantidade);
                 } else {
@@ -48,6 +50,7 @@ public class Jogo {
                 }
             }
         }
+        rest = jogadas;
     }
 
     public void atirar() {
@@ -55,10 +58,21 @@ public class Jogo {
     }
 
     public void imprime() {
+        campo.imprime();
+
+        System.out.println("Jogadas Restantes: " + rest);
         campo.imprimeMapaJogador();
+        rest--;
     }
 
     public int getJogadas() {
         return jogadas;
     }
+
+    public boolean Encerrou(int cont_jogadas) {
+
+        return /*campo.AchouTudo() == true ||*/ cont_jogadas == jogadas;
+
+    }
+
 }

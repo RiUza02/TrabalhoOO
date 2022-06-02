@@ -28,4 +28,9 @@ public class Navio {
     public int gety() {
         return yPosicao;
     }
+    
+    public int GetDirecao(){
+        int direcao = (int) (Math.round(Math.random()));
+        return direcao;
+    }
 }

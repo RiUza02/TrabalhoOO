@@ -6,7 +6,7 @@ public class Campo {
     private static final int t = 10; //tamanho do campo (caso queira ajustar depois)
     private static final int agua = 0; //simbulo que representara agua
     private final Scanner teclado = new Scanner(System.in);
-    private static int quantidadeNavio = 10; //quantidade de navios a ser colocada no mapa
+    private static int quantidadeNavio; //quantidade de navios a ser colocada no mapa
     private int[][] mapa; //mapa que sera manipulado pelo programa
     private int[][] mapaJogador; //mapa que sera manipulado pelo jogador
     private Navio[] navio = new Navio[quantidadeNavio];
@@ -20,14 +20,15 @@ public class Campo {
                 mapaJogador[i][j] = agua;
             }
         }
-        addNavio();
+        addNavio(); //Só podemos adicionar navios depois de receber a quantidade, então essa chamada não pode estar no construtor @Victor
     }
 
     public static void quantidadeNavio(int n) {
         quantidadeNavio = n;
+        
     }
 
-    /* public void imprime() {
+    public void imprime() {
         System.out.print("   ");
         for (int i = 1; i < 11; i++) {
             System.out.print(i + "  ");
@@ -40,18 +41,19 @@ public class Campo {
             }
             System.out.println();
         }
-    }*/
+    }
+    
     public void imprimeMapaJogador() {
         System.out.print("    ");
         for (int i = 0; i < 10; i++) {
-            System.out.print((i + 1) + "  ");
+            System.out.print((i) + "  ");
         }
         System.out.println("");
         for (int i = 0; i < t; i++) {
             if (i + 1 == 10) {
-                System.out.print((i + 1) + "| ");
+                System.out.print((i) + "| ");
             } else {
-                System.out.print((i + 1) + "|  ");
+                System.out.print((i) + "|  ");
             }
             for (int j = 0; j < t; j++) {
                 if (mapaJogador[i][j] == -1) {
@@ -78,21 +80,43 @@ public class Campo {
         }
     }
 
+    public boolean AchouTudo() { //Não consegui testar por causa do erro no construtor @Victor
+
+        for (Navio nav : navio) {
+
+            int direção = nav.GetDirecao();
+
+            for (int i = 0; i < nav.getTamanho(); i++) {
+                if (direção == 0) {
+                    if (mapaJogador[nav.getx() + 1][nav.gety()] != -1) {
+                        return false;
+                    }
+                } else {
+                    if (mapaJogador[nav.getx()][nav.gety() + i] != -1) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+
+    }
+
 //------------------------------------------------------------------------------------------------
     private int verificaNavio(int x, int y) {
         return mapa[x][y];
     }
 
     private void addNavio() {
-        int direcao;
+        //int direcao;
         int c = 0;
         while (c < quantidadeNavio) {
             navio[c] = new Navio();
             navio[c].setx(nAleatorio());
             navio[c].sety(nAleatorio());
-            direcao = (int) (Math.round(Math.random()));
-            if (verificaNavioPosicao(navio[c], direcao)) {
-                switch (direcao) {
+            if (verificaNavioPosicao(navio[c], navio[c].GetDirecao())) {
+                switch (navio[c].GetDirecao()) {
                     case 0 -> {
                         for (int i = 0; i < navio[c].getTamanho(); i++) {
                             mapa[navio[c].getx() + i][navio[c].gety()] = navio[c].getTamanho();
@@ -229,4 +253,5 @@ public class Campo {
     private int nAleatorio() {
         return (int) Math.round((Math.random() * (t - 1)));
     }
+    
 }
