@@ -3,76 +3,71 @@ import java.util.*;
 
 public class Jogo {
 
-    private int jogadas;
-    private Campo campo = new Campo();
+    private int quantidadeJogadas;
+    private char dificuldade;
+    private int quantidadeNavio;
+    private Campo campo;
     private final Scanner teclado = new Scanner(System.in);
-    private static int rest;
 
     public Jogo() {
-        setDificuldade();
+        setConfig();
+        campo = new Campo(quantidadeNavio);
     }
 
-    private void setDificuldade() {
-        int quantidade;
-        char dificuldade;
+    public void atirar() {
+        if (campo.atirar()) {
+            quantidadeJogadas--;
+        }
+    }
+
+    public void imprime() {
+        campo.imprimeMapaJogador();
+    }
+
+    public int getJogadas() {
+        return quantidadeJogadas;
+    }
+
+    public boolean encerrou() {
+        return campo.achouTudo();
+    }
+
+    private void setConfig() {
+        int flag1;
+        char flag2;
         System.out.println("Escolha a dificuldade: \n"
                 + "F: facil \n"
                 + "M: medio \n"
                 + "D: dificil");
-        dificuldade = Character.toUpperCase(teclado.next().charAt(0));
+        flag2 = Character.toUpperCase(teclado.next().charAt(0));
+        if ((flag2 != 'F') || (flag2 != 'M') || (flag2 != 'D')) {
+            dificuldade = flag2;
+            System.out.println("Escolha a quantidade de alvos (entre 1 e 15)");
+            flag1 = teclado.nextInt();
+            if (flag1 >= 1 & flag1 <= 15) {
+                quantidadeNavio = flag1;
+                setJogadas(flag1);
+            } else {
+                System.out.println("Valor invalido!");
+            }
+        } else {
+            System.out.println("Valor invalido!");
+        }
+    }
 
-        System.out.println("Escolha a quantidade de alvos (entre 1 e 15)");
-        quantidade = teclado.nextInt();
+    private void setJogadas(int n) {
         switch (dificuldade) {
             case 'F' -> {
-                if (quantidade <= 15 & quantidade >= 1) {
-                    Campo.quantidadeNavio(quantidade);
-                    jogadas = 15 * quantidade;
-                } else {
-                    System.out.println("valor invalido");
-                }
+                quantidadeJogadas = n * 15;
             }
 
             case 'M' -> {
-                if (quantidade <= 15 & quantidade >= 1) {
-                    Campo.quantidadeNavio(quantidade);
-                    jogadas = 10 * quantidade;
-                } else {
-                    System.out.println("valor invalido");
-                }
+                quantidadeJogadas = n * 10;
             }
+
             case 'D' -> {
-                if (quantidade <= 15 & quantidade >= 1) {
-                    jogadas = 7 * quantidade;
-                    Campo.quantidadeNavio(quantidade);
-                } else {
-                    System.out.println("valor invalido");
-                }
+                quantidadeJogadas = n * 5;
             }
         }
-        rest = jogadas;
     }
-
-    public void atirar() {
-        campo.atirar();
-    }
-
-    public void imprime() {
-        campo.imprime();
-
-        System.out.println("Jogadas Restantes: " + rest);
-        campo.imprimeMapaJogador();
-        rest--;
-    }
-
-    public int getJogadas() {
-        return jogadas;
-    }
-
-    public boolean Encerrou(int cont_jogadas) {
-
-        return /*campo.AchouTudo() == true ||*/ cont_jogadas == jogadas;
-
-    }
-
 }

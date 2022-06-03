@@ -4,9 +4,11 @@ public class Navio {
     private final int tamanho;
     private int xPosicao;
     private int yPosicao;
+    private int direcao;
 
     public Navio() {
         tamanho = (int) Math.round((Math.random() * 3 + 2));
+        direcao = (int) (Math.round(Math.random()));
     }
 
     int getTamanho() {
@@ -30,7 +32,6 @@ public class Navio {
     }
     
     public int GetDirecao(){
-        int direcao = (int) (Math.round(Math.random()));
         return direcao;
     }
 }
