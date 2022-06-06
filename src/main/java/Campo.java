@@ -8,11 +8,12 @@ public class Campo {
     private final Scanner teclado = new Scanner(System.in);
     private static int quantidadeNavio; //quantidade de navios a ser colocada no mapa
     private static int[][] mapaJogador; //mapa que sera manipulado pelo jogador
-    private static Navio[] navio = new Navio[15];
+    private static Navio[] navio;
     private int[][] mapa; //mapa que sera manipulado pelo programa
 
     public Campo(int quantidadeNavio) {
         this.quantidadeNavio = quantidadeNavio;
+        navio = new Navio[this.quantidadeNavio];
         mapa = new int[t][t];
         mapaJogador = new int[t][t];
         for (int i = 0; i < t; i++) {
@@ -32,7 +33,7 @@ public class Campo {
         }
         System.out.println("");
         for (int i = 0; i < t; i++) {
-                System.out.print((i) + "| ");
+            System.out.print((i) + "| ");
             for (int j = 0; j < t; j++) {
                 System.out.print(mapa[i][j] + "  ");
             }
@@ -41,7 +42,7 @@ public class Campo {
     }
 
     public void imprimeMapaJogador() {
-        System.out.print("   ");
+        System.out.print("  ");
         for (int i = 0; i < 10; i++) {
             System.out.print((i) + "  ");
         }
@@ -60,14 +61,14 @@ public class Campo {
     }
 
     public boolean atirar() {
-        System.out.println("informe as coodenadas:");
+        System.out.println("Informe as Coodenadas:");
         System.out.print("x: ");
         int x = teclado.nextInt();
         System.out.println();
         System.out.print("y: ");
         int y = teclado.nextInt();
         if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
-            if ( mapa[y][x] == agua) {
+            if (mapa[y][x] == agua) {
                 mapaJogador[y][x] = -1;
                 return true;
             } else {
@@ -78,17 +79,19 @@ public class Campo {
         return false;
     }
 
-    public boolean achouTudo() { //Ainda nao funciona @Yuri
+    public boolean achouTudo() {
         for (Navio nav : navio) {
             int direcao = nav.GetDirecao();
-            for (int i = 0; i < nav.getTamanho(); i++) {
-                switch (direcao) {
-                    case 0 -> {
+            switch (direcao) {
+                case 0 -> {
+                    for (int i = 0; i < nav.getTamanho(); i++) {
                         if (mapaJogador[nav.getx() + i][nav.gety()] == 0) {
                             return false;
                         }
                     }
-                    case 1 -> {
+                }
+                case 1 -> {
+                    for (int i = 0; i < nav.getTamanho(); i++) {
                         if (mapaJogador[nav.getx()][nav.gety() + i] == 0) {
                             return false;
                         }
@@ -154,7 +157,7 @@ public class Campo {
                     }
                 }
             }
-            
+
             case 3 -> {
                 switch (direcao) {
                     case 0 -> {

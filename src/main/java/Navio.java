@@ -30,8 +30,8 @@ public class Navio {
     public int gety() {
         return yPosicao;
     }
-    
-    public int GetDirecao(){
+
+    public int GetDirecao() {
         return direcao;
     }
 }
