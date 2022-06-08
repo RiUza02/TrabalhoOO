@@ -1,4 +1,6 @@
-
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    20206509ab
 public class Navio {
 
     private final int tamanho;
@@ -30,8 +32,8 @@ public class Navio {
     public int gety() {
         return yPosicao;
     }
-    
-    public int GetDirecao(){
+
+    public int GetDirecao() {
         return direcao;
     }
 }

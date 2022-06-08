@@ -1,4 +1,6 @@
-
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    20206509ab
 import java.util.*;
 
 public class Jogo {
@@ -16,9 +18,9 @@ public class Jogo {
 
     public void atirar() {
         if (campo.atirar()) {
+    }
             quantidadeJogadas--;
         }
-    }
 
     public void imprime() {
         campo.imprimeMapaJogador();
@@ -28,17 +30,15 @@ public class Jogo {
         return quantidadeJogadas;
     }
 
-    public boolean encerrou() {
-        return campo.achouTudo();
-    }
 
     private void setConfig() {
         int flag1;
         char flag2;
-        System.out.println("Escolha a dificuldade: \n"
-                + "F: facil \n"
-                + "M: medio \n"
-                + "D: dificil");
+        System.out.println("""
+                           Escolha a dificuldade: 
+                           F: facil 
+                           M: medio 
+                           D: dificil""");
         flag2 = Character.toUpperCase(teclado.next().charAt(0));
         if ((flag2 != 'F') || (flag2 != 'M') || (flag2 != 'D')) {
             dificuldade = flag2;
@@ -57,17 +57,25 @@ public class Jogo {
 
     private void setJogadas(int n) {
         switch (dificuldade) {
-            case 'F' -> {
+            case 'F': {
                 quantidadeJogadas = n * 15;
+                break;
             }
 
-            case 'M' -> {
+            case 'M': {
                 quantidadeJogadas = n * 10;
+                break;
             }
 
-            case 'D' -> {
+            case 'D': {
                 quantidadeJogadas = n * 5;
+                break;
             }
         }
     }
+    
+    public boolean encerrou() {
+        return (this.quantidadeJogadas <= 0) || campo.achouTudo();
+    }
+    
 }
