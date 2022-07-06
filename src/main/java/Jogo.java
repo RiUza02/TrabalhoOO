@@ -1,4 +1,6 @@
-
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    20206509abs
 import java.util.*;
 
 public class Jogo {
@@ -15,7 +17,8 @@ public class Jogo {
     }
 
     public void atirar() {
-            quantidadeJogadas--;
+        campo.atirar();
+        quantidadeJogadas--;
     }
 
     public void imprime() {
@@ -25,7 +28,6 @@ public class Jogo {
     public int getJogadas() {
         return quantidadeJogadas;
     }
-
 
     private void setConfig() {
         int flag1;
@@ -66,9 +68,9 @@ public class Jogo {
             }
         }
     }
-    
+
     public boolean encerrou() {
         return (this.quantidadeJogadas <= 0) || campo.achouTudo();
     }
-    
+
 }
