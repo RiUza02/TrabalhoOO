@@ -1,6 +1,4 @@
-//yuri Alexsander Sudre Almeida Souza   202065512b
-//Rafaela da Silva Cunha    202065509b
-//Victor Aluisio dos Santos Oliveira    20206509ab
+
 import java.util.*;
 
 public class Jogo {
@@ -17,10 +15,8 @@ public class Jogo {
     }
 
     public void atirar() {
-        if (campo.atirar()) {
-    }
             quantidadeJogadas--;
-        }
+    }
 
     public void imprime() {
         campo.imprimeMapaJogador();
@@ -57,19 +53,16 @@ public class Jogo {
 
     private void setJogadas(int n) {
         switch (dificuldade) {
-            case 'F': {
+            case 'F' -> {
                 quantidadeJogadas = n * 15;
-                break;
             }
 
-            case 'M': {
+            case 'M' -> {
                 quantidadeJogadas = n * 10;
-                break;
             }
 
-            case 'D': {
+            case 'D' -> {
                 quantidadeJogadas = n * 5;
-                break;
             }
         }
     }

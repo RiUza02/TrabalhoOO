@@ -85,15 +85,24 @@ public class Campo {
         for (Navio nav : navio) {
             int direcao = nav.GetDirecao();
             switch (direcao) {
+<<<<<<< HEAD
                 case 0: {
+=======
+                case 0 -> {
+>>>>>>> 78199a814d74b806eec1cd2f0bf6530b7be23b2b
                     for (int i = 0; i < nav.getTamanho(); i++) {
                         if (mapaJogador[nav.getx() + i][nav.gety()] == 0) {
                             return false;
                         }
                     }
+<<<<<<< HEAD
                     break;
                 }
                 case 1: {
+=======
+                }
+                case 1 -> {
+>>>>>>> 78199a814d74b806eec1cd2f0bf6530b7be23b2b
                     for (int i = 0; i < nav.getTamanho(); i++) {
                         if (mapaJogador[nav.getx()][nav.gety() + i] == 0) {
                             return false;
@@ -167,7 +176,11 @@ public class Campo {
                 break;
             }
 
+<<<<<<< HEAD
             case 3: {
+=======
+            case 3 -> {
+>>>>>>> 78199a814d74b806eec1cd2f0bf6530b7be23b2b
                 switch (direcao) {
                     case 0: {
                         if (navio.getx() + 2 < t) {
