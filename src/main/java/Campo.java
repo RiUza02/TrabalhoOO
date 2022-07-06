@@ -1,17 +1,18 @@
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
+
 import java.util.*;
 
 public class Campo {
 
     private static final int t = 10; //tamanho do campo (caso queira ajustar depois)
     private static final int agua = 0; //simbulo que representara agua
-    private final Scanner teclado = new Scanner(System.in);
     private static int quantidadeNavio; //quantidade de navios a ser colocada no mapa
-    private static int[][] mapaJogador; //mapa que sera manipulado pelo jogador
+    private final int[][] mapaJogador; //mapa que sera manipulado pelo jogador
+    private final int[][] mapa; //mapa que sera manipulado pelo programa
+    private final Scanner teclado = new Scanner(System.in);
     private static Navio[] navio;
-    private int[][] mapa; //mapa que sera manipulado pelo programa
 
     public Campo(int quantidadeNavio) {
         this.quantidadeNavio = quantidadeNavio;
@@ -25,7 +26,6 @@ public class Campo {
             }
         }
         addNavio();
-        imprime();
     }
 
     public void imprime() {
@@ -41,6 +41,7 @@ public class Campo {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public void imprimeMapaJogador() {
@@ -60,25 +61,17 @@ public class Campo {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
-    public boolean atirar() {
-        System.out.println("Informe as Coodenadas:");
-        System.out.print("x: ");
-        int x = teclado.nextInt();
-        System.out.println();
-        System.out.print("y: ");
-        int y = teclado.nextInt();
+    public void atirar(int x, int y) {
         if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
             if (mapa[y][x] == agua) {
                 mapaJogador[y][x] = -1;
-                return true;
             } else {
                 mapaJogador[y][x] = mapa[y][x];
-                return true;
             }
         }
-        return false;
     }
 
     public boolean achouTudo() {
@@ -102,6 +95,14 @@ public class Campo {
             }
         }
         return true;
+    }
+
+    public int getMapaPosicaoJogador(int x, int y) {
+        return mapaJogador[y][x];
+    }
+
+    public int getMapaPosicao(int x, int y) {
+        return mapa[y][x];
     }
     //------------------------------------------------------------------------------------------------
 
