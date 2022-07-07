@@ -1,8 +1,9 @@
+package BatalhaNaval;
+
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
-
-public class BotInteligente extends Bot {
+public class Botladrao extends Bot {
 
     private final Campo campo;
     private int x;
@@ -12,7 +13,7 @@ public class BotInteligente extends Bot {
     private int DislocamentoTiros;
     private int qTirosCertos;
 
-    public BotInteligente(int quantidadeNavio) {
+    public Botladrao(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);
         comportamento = 0;
         DislocamentoTiros = 0;
@@ -20,21 +21,44 @@ public class BotInteligente extends Bot {
 
     @Override
     public void atirar() {
-        switch (comportamento) {
-            case 0 -> {
-                atirarAleatorio();
+        double sorte = Math.random();
+        if (sorte < 0.15) {
+            for (int i = 0; i < 2; i++) {
+                switch (comportamento) {
+                    case 0 -> {
+                        atirarAleatorio();
+                    }
+                    case 1 -> {
+                        atirarEsquerda(x - DislocamentoTiros, y);
+                    }
+                    case 2 -> {
+                        atirarDireita(x + DislocamentoTiros, y);
+                    }
+                    case 3 -> {
+                        atiraCima(x, y - DislocamentoTiros);
+                    }
+                    case 4 -> {
+                        atiraBaixo(x, y + DislocamentoTiros);
+                    }
+                }
             }
-            case 1 -> {
-                atirarEsquerda(x - DislocamentoTiros, y);
-            }
-            case 2 -> {
-                atirarDireita(x + DislocamentoTiros, y);
-            }
-            case 3 -> {
-                atiraCima(x, y - DislocamentoTiros);
-            }
-            case 4 -> {
-                atiraBaixo(x, y + DislocamentoTiros);
+        } else {
+            switch (comportamento) {
+                case 0 -> {
+                    atirarAleatorio();
+                }
+                case 1 -> {
+                    atirarEsquerda(x - DislocamentoTiros, y);
+                }
+                case 2 -> {
+                    atirarDireita(x + DislocamentoTiros, y);
+                }
+                case 3 -> {
+                    atiraCima(x, y - DislocamentoTiros);
+                }
+                case 4 -> {
+                    atiraBaixo(x, y + DislocamentoTiros);
+                }
             }
         }
         if (qTirosCertos == tamanhoNavio) {

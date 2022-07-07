@@ -1,7 +1,8 @@
+package BatalhaNaval;
+
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509abs
-
 import java.util.*;
 
 public class Jogo {
@@ -14,7 +15,6 @@ public class Jogo {
 
     public Jogo() {
         setConfig();
-        System.out.println("dificuldade: " + dificuldade);
         switch (dificuldade) {
             case 'F' -> {
                 bot = new BotBurro(quantidadeNavio);
@@ -44,11 +44,10 @@ public class Jogo {
     private void setConfig() {
         int flag1;
         char flag2;
-        System.out.println("""
-                           Escolha a dificuldade: 
-                           F: facil 
-                           M: medio 
-                           D: dificil""");
+        System.out.println("Escolha a dificuldade: ");
+        System.out.println("F: facil");
+        System.out.println("M: medio");
+        System.out.println("D: dificil");
         flag2 = Character.toUpperCase(teclado.next().charAt(0));
         if ((flag2 == 'F') || (flag2 == 'M') || (flag2 == 'D')) {
             dificuldade = flag2;

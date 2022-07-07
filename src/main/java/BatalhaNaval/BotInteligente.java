@@ -1,8 +1,10 @@
+package BatalhaNaval;
+
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
-public class Botladrao extends Bot {
+public class BotInteligente extends Bot {
 
     private final Campo campo;
     private int x;
@@ -12,7 +14,7 @@ public class Botladrao extends Bot {
     private int DislocamentoTiros;
     private int qTirosCertos;
 
-    public Botladrao(int quantidadeNavio) {
+    public BotInteligente(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);
         comportamento = 0;
         DislocamentoTiros = 0;
@@ -20,29 +22,27 @@ public class Botladrao extends Bot {
 
     @Override
     public void atirar() {
-        for (int i = 0; i < 2; i++) {
-            switch (comportamento) {
-                case 0 -> {
-                    atirarAleatorio();
-                }
-                case 1 -> {
-                    atirarEsquerda(x - DislocamentoTiros, y);
-                }
-                case 2 -> {
-                    atirarDireita(x + DislocamentoTiros, y);
-                }
-                case 3 -> {
-                    atiraCima(x, y - DislocamentoTiros);
-                }
-                case 4 -> {
-                    atiraBaixo(x, y + DislocamentoTiros);
-                }
+        switch (comportamento) {
+            case 0 -> {
+                atirarAleatorio();
             }
-            if (qTirosCertos == tamanhoNavio) {
-                comportamento = 0;
-                DislocamentoTiros = 0;
-                qTirosCertos = 0;
+            case 1 -> {
+                atirarEsquerda(x - DislocamentoTiros, y);
             }
+            case 2 -> {
+                atirarDireita(x + DislocamentoTiros, y);
+            }
+            case 3 -> {
+                atiraCima(x, y - DislocamentoTiros);
+            }
+            case 4 -> {
+                atiraBaixo(x, y + DislocamentoTiros);
+            }
+        }
+        if (qTirosCertos == tamanhoNavio) {
+            comportamento = 0;
+            DislocamentoTiros = 0;
+            qTirosCertos = 0;
         }
     }
 
