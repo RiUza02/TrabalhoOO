@@ -22,7 +22,7 @@ public class Botladrao extends Bot {
     @Override
     public void atirar() {
         double sorte = Math.random();
-        if (sorte < 0.15) {
+        if (sorte < 0.30) {
             for (int i = 0; i < 2; i++) {
                 switch (comportamento) {
                     case 0 -> {

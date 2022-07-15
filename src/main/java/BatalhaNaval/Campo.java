@@ -4,8 +4,6 @@ package BatalhaNaval;
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
-import java.util.*;
-
 public class Campo {
 
     private static final int t = 10; //tamanho do campo (caso queira ajustar depois)
@@ -13,7 +11,6 @@ public class Campo {
     private static int quantidadeNavio; //quantidade de navios a ser colocada no mapa
     private final int[][] mapaJogador; //mapa que sera manipulado pelo jogador
     private final int[][] mapa; //mapa que sera manipulado pelo programa
-    private final Scanner teclado = new Scanner(System.in);
     private static Navio[] navio;
 
     public Campo(int quantidadeNavio) {
