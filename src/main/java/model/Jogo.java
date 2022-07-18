@@ -1,5 +1,5 @@
 
-package BatalhaNaval;
+package model;
 
 public abstract class Jogo {
 

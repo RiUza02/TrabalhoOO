@@ -1,19 +1,23 @@
-package BatalhaNaval;
+package model;
 
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509abs
+import IA.Bot;
+import IA.BotInteligente;
+import IA.Botladrao;
+import IA.BotBurro;
 import java.util.*;
 
-public class JogoPlayerVsPlayer extends Jogo {
+public class JogoPlayerVsAI extends Jogo {
 
     private char dificuldade;
     private int quantidadeNavio;
-    Jogador jogador1, jogador2;
-    Bot bot;
+    private Jogador jogador;
+    private Bot bot;
     private final Scanner teclado = new Scanner(System.in);
 
-    public JogoPlayerVsPlayer() {
+    public JogoPlayerVsAI() {
         setConfig();
         setPlayer();
         switch (dificuldade) {
@@ -27,33 +31,30 @@ public class JogoPlayerVsPlayer extends Jogo {
                 bot = new Botladrao(quantidadeNavio);
             }
         }
-        jogador1 = new Jogador(quantidadeNavio);
-        jogador2 = new Jogador(quantidadeNavio);
+        jogador = new Jogador(quantidadeNavio);
     }
 
     public void setPlayer() {
-        System.out.println("o Nome do jogador 1: ");
-        jogador1.setNome(teclado.nextLine());
-        System.out.println("A idade do jogador 1: ");
-        jogador1.setIdade(teclado.nextInt());
-        System.out.println("o Nome do jogador 2: ");
-        jogador2.setNome(teclado.nextLine());
-        System.out.println("A idade do jogador 2: ");
-        jogador2.setIdade(teclado.nextInt());
+        jogador = new Jogador(quantidadeNavio);
+        System.out.println("o nome do jogador: ");
+        jogador.setNome(teclado.nextLine());
+        String nome = teclado.next();
+        System.out.println("a idade do jogador: ");
+        jogador.setIdade(teclado.nextInt());
     }
 
     @Override
     public void atirar() {
-        jogador1.atirar();
-        jogador2.atirar();
+        jogador.atirar();
+        bot.atirar();
     }
 
     @Override
     public void imprime() {
         System.out.println("Jogador: ");
-        jogador1.imprime();
+        jogador.imprime();
         System.out.println("Bot: ");
-        jogador2.imprime();
+        bot.imprime();
     }
 
     private void setConfig() {
@@ -82,12 +83,12 @@ public class JogoPlayerVsPlayer extends Jogo {
 
     @Override
     public boolean encerrou() {
-        if (jogador1.achouTudo()) {
-            System.out.println(jogador1.getNome() + " Ganhou!");
+        if (jogador.achouTudo()) {
+            System.out.println(jogador.getNome() + " Ganhou!");
             return true;
         } else {
             if (bot.achoTudo()) {
-                System.out.println(jogador2.getNome() + " Ganhou!");
+                System.out.println("O Bot venceu!");
                 return true;
             } else {
                 return false;

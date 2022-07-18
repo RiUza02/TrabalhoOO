@@ -1,4 +1,4 @@
-package BatalhaNaval;
+package model;
 
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b

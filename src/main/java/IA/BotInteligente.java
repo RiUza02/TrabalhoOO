@@ -1,6 +1,9 @@
-package BatalhaNaval;
+package IA;
 
 //yuri Alexsander Sudre Almeida Souza   202065512b
+
+import model.Campo;
+
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
 

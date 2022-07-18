@@ -1,5 +1,6 @@
-package BatalhaNaval;
+package control;
 
+import model.Jogador;
 import java.util.ArrayList;
 import java.util.List;
 
