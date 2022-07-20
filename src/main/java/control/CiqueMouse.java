@@ -19,25 +19,25 @@ public class CiqueMouse implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent me) {
         Botao botao = (Botao) me.getSource();
-        jogador.atirar(botao.getX(), botao.getY());
+        jogador.atirar(botao.getx(), botao.gety());
         System.out.println(jogador.achouTudo());
         jogador.imprime();
-        if (campo.getMapaPosicaoJogador(botao.getX(), botao.getY()) != 0) {
-            botao.setText("-1");
+        if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) != 0) {
+            botao.setText("Agua");
         }
-        if (campo.getMapaPosicaoJogador(botao.getX(), botao.getY()) == 1) {
+        if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 1) {
             botao.setText("1");
         }
-        if (campo.getMapaPosicaoJogador(botao.getX(), botao.getY()) == 2) {
+        if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 2) {
             botao.setText("2");
         }
-        if (campo.getMapaPosicaoJogador(botao.getX(), botao.getY()) == 3) {
+        if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 3) {
             botao.setText("3");
         }
-        if (campo.getMapaPosicaoJogador(botao.getX(), botao.getY()) == 4) {
+        if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 4) {
             botao.setText("4");
         }
-        if (campo.getMapaPosicaoJogador(botao.getX(), botao.getY()) == 5) {
+        if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 5) {
             botao.setText("5");
         }
         Tela.mouseClickedBot();

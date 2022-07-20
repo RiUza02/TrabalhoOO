@@ -15,7 +15,7 @@ public class Tela extends JFrame {
     private Jogador jogador;
     private static Botao[][] botoesBot;
     private static Bot bot;
-    private final int nNavios = 1;
+    private final int nNavios =10;
     private static JPanel menu;
 
     public Tela() {
@@ -64,12 +64,10 @@ public class Tela extends JFrame {
         this.remove(menu);
         JPanel player = new JPanel();
         player.setLayout(new GridLayout(10, 10));
-        //player.setBorder(BorderFactory.createTitledBorder("Player"));
+        player.setBorder(BorderFactory.createTitledBorder("Player"));
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 10; i++) {
-                Botao botao = new Botao();
-                botao.setX(i);
-                botao.setY(j);
+                Botao botao = new Botao(i, j);
                 botao.addMouseListener(new CiqueMouse(jogador));
                 botao.setPreferredSize(new Dimension(50, 50));
                 botao.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -82,9 +80,7 @@ public class Tela extends JFrame {
         bot.setBorder(BorderFactory.createTitledBorder("bot"));
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 10; i++) {
-                Botao botao = new Botao();
-                botao.setX(i);
-                botao.setY(j);
+                Botao botao = new Botao(i, j);
                 botao.setPreferredSize(new Dimension(10, 10));
                 botao.setBorder(BorderFactory.createLineBorder(Color.black));
                 botao.setVisible(true);
