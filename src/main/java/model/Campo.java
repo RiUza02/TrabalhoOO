@@ -3,7 +3,6 @@ package model;
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
-
 public class Campo {
 
     private static final int t = 10; //tamanho do campo (caso queira ajustar depois)
@@ -64,12 +63,10 @@ public class Campo {
     }
 
     public void atirar(int x, int y) {
-        if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
-            if (mapa[y][x] == agua) {
-                mapaJogador[y][x] = -1;
-            } else {
-                mapaJogador[y][x] = mapa[y][x];
-            }
+        if (mapa[y][x] == agua) {
+            mapaJogador[y][x] = -1;
+        } else {
+            mapaJogador[y][x] = mapa[y][x];
         }
     }
 

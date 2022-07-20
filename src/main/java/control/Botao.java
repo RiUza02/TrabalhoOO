@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 import javax.swing.JButton;
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    20206509ab
 
-/**
- *
- * @author 55329
- */
-public class Botao extends JButton{
+public class Botao extends JButton {
+
     public int x, y;
 
     public int getX() {
@@ -28,5 +24,5 @@ public class Botao extends JButton{
     public void setY(int y) {
         this.y = y;
     }
-    
+
 }

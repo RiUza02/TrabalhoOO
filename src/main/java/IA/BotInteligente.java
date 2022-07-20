@@ -1,9 +1,7 @@
 package IA;
 
-//yuri Alexsander Sudre Almeida Souza   202065512b
-
 import model.Campo;
-
+//yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
@@ -55,8 +53,23 @@ public class BotInteligente extends Bot {
     }
 
     @Override
-    public boolean achoTudo() {
+    public boolean achouTudo() {
         return campo.achouTudo();
+    }
+
+    @Override
+    public Campo getCampo() {
+        return campo;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
     }
 
     //-----------------------------------------------------------------------------

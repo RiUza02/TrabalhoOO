@@ -1,15 +1,15 @@
 package IA;
 
-//yuri Alexsander Sudre Almeida Souza   202065512b
-
 import model.Campo;
-
+//yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
 public class BotBurro extends Bot {
 
     private final Campo campo;
+    int x;
+    int y;
 
     public BotBurro(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);
@@ -17,8 +17,8 @@ public class BotBurro extends Bot {
 
     @Override
     public void atirar() {
-        int x = (int) Math.round((Math.random() * 9));
-        int y = (int) Math.round((Math.random() * 9));
+        x = (int) Math.round((Math.random() * 9));
+        y = (int) Math.round((Math.random() * 9));
         if (campo.getMapaPosicaoJogador(x, y) == 0) {
             campo.atirar(x, y);
         } else {
@@ -32,7 +32,22 @@ public class BotBurro extends Bot {
     }
 
     @Override
-    public boolean achoTudo() {
+    public boolean achouTudo() {
         return campo.achouTudo();
+    }
+
+    @Override
+    public Campo getCampo() {
+        return campo;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
     }
 }
