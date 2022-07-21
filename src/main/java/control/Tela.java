@@ -15,15 +15,17 @@ public class Tela extends JFrame {
     private Jogador jogador;
     private static Botao[][] botoesBot;
     private static Bot bot;
-    private final int nNavios =10;
+    private static int nNavios;
     private static JPanel menu;
+    private static JPanel menuD;
 
     public Tela() {
         this.Tela = new JPanel();
         botoesBot = new Botao[10][10];
-        jogador = new Jogador(nNavios);
-        bot = new BotBurro(nNavios);
+        //jogador = new Jogador(nNavios);
+        //bot = new BotBurro(nNavios);
         menu = new JPanel();
+        menuD = new JPanel();
     }
     
     public void TelaMenu(){
@@ -38,13 +40,13 @@ public class Tela extends JFrame {
         
         JButton rank = new JButton();
         rank.setText("PLACAR");
-        //iniciar.addMouseListener();
+        //rank.addMouseListener();
         rank.setPreferredSize(new Dimension(300,50));
         rank.setBorder(BorderFactory.createLineBorder(Color.black));
         
         JButton outros = new JButton();
         outros.setText("BOTAO");
-        //iniciar.addMouseListener();
+        //outros.addMouseListener();
         outros.setPreferredSize(new Dimension(300,50));
         outros.setBorder(BorderFactory.createLineBorder(Color.black));
         
@@ -59,9 +61,63 @@ public class Tela extends JFrame {
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         
     }
+    
+    public void setDificuldadeMenu(){
+        
+        this.remove(menu);
+        JButton facil = new JButton();
+        facil.setText("FÁCIL");
+        facil.setToolTipText("Quase imposível perde");
+        facil.addActionListener(new ModoFacil(this) {});
+        facil.setPreferredSize(new Dimension(300,50));
+        facil.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+        JButton medio = new JButton();
+        medio.setText("MÉDIO");
+        medio.setToolTipText("Ainda é facil");
+        medio.addActionListener(new ModoMedio(this) {});
+        medio.setPreferredSize(new Dimension(300,50));
+        medio.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+        JButton dificil= new JButton();
+        dificil.setText("DIFICIL");
+        dificil.setToolTipText("Ok, esse é um desafio");
+        dificil.addActionListener(new ModoDificil(this) {});
+        dificil.setPreferredSize(new Dimension(300,50));
+        dificil.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+        menuD.add(facil);
+        menuD.add(medio);
+        menuD.add(dificil);
+        
+        this.add(menuD);
+        this.setVisible(true);
+        this.setSize(500, 400);
+        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+    }
+    
+    public void setDificuldade(int N, char A){
+        
+        this.nNavios = N;
+        
+        
+        jogador = new Jogador(nNavios);
+        switch(A){
+            case 'F':
+                bot = new BotBurro(nNavios);
+                break;
+            case 'M':
+                bot = new BotInteligente(nNavios);
+                break;
+            case 'D':
+                bot = new Botladrao(nNavios);
+                break;
+        }
+        
+    }
 
     public void desenha() {
-        this.remove(menu);
+        this.remove(menuD);
         JPanel player = new JPanel();
         player.setLayout(new GridLayout(10, 10));
         player.setBorder(BorderFactory.createTitledBorder("Player"));

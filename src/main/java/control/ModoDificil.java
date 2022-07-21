@@ -4,23 +4,28 @@
  */
 package control;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author victo
  */
-public class iniciarJogo implements ActionListener{
-    
+public class ModoDificil implements ActionListener{
+
     Tela tela;
     
-    public iniciarJogo(Tela tela){
+    public ModoDificil(Tela tela){
+        
         this.tela = tela;
+        
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.tela.setDificuldadeMenu();
+        this.tela.setDificuldade(10, 'D');
+        this.tela.desenha();
         this.tela.repaint();
     }
+    
 }
