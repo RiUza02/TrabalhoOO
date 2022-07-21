@@ -1,20 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
+import BatalhaNaval.Tela;
 import java.awt.event.*;
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    20206509ab
 
-/**
- *
- * @author victo
- */
-public class iniciarJogo implements ActionListener{
-    
+public class IniciarJogo implements ActionListener {
+
     Tela tela;
-    
-    public iniciarJogo(Tela tela){
+
+    public IniciarJogo(Tela tela) {
         this.tela = tela;
     }
 

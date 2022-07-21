@@ -1,5 +1,6 @@
 package control;
 
+import BatalhaNaval.Tela;
 import java.awt.event.*;
 import model.*;
 //yuri Alexsander Sudre Almeida Souza   202065512b
@@ -8,8 +9,8 @@ import model.*;
 
 public class CiqueMouse implements MouseListener {
 
-    private Campo campo;
-    private Jogador jogador;
+    private final Campo campo;
+    private final Jogador jogador;
 
     public CiqueMouse(Jogador jogador) {
         this.jogador = jogador;

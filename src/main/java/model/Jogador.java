@@ -1,6 +1,5 @@
 package model;
 
-import java.util.*;
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
@@ -8,7 +7,6 @@ import java.util.*;
 public class Jogador {
 
     private final Campo campo;
-    private final Scanner teclado = new Scanner(System.in);
     String nome;
 
     public Jogador(int quantidadeNavio) {

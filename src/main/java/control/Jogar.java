@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 import model.Jogador;
 import IA.Bot;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    20206509ab
 
-/**
- *
- * @author 55329
- */
 public class Jogar implements MouseListener {
 
     Botao[][] botoes = new Botao[10][10];
