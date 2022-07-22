@@ -11,18 +11,18 @@ public class CiqueMouse implements MouseListener {
 
     private final Campo campo;
     private final Jogador jogador;
+    private final char dificuldade;
 
-    public CiqueMouse(Jogador jogador) {
+    public CiqueMouse(Jogador jogador, char dificuldade) {
         this.jogador = jogador;
         this.campo = jogador.getCampo();
+        this.dificuldade = dificuldade;
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {
         Botao botao = (Botao) me.getSource();
         jogador.atirar(botao.getx(), botao.gety());
-        System.out.println(jogador.achouTudo());
-        jogador.imprime();
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) != 0) {
             botao.setText("Agua");
         }
@@ -41,7 +41,14 @@ public class CiqueMouse implements MouseListener {
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 5) {
             botao.setText("5");
         }
+        double sorte = Math.random();
+        if ((sorte < 0.30) && (dificuldade == 'D')) {
+            Tela.mouseClickedBot();
+        }
         Tela.mouseClickedBot();
+        
+        if(jogador.achouTudo())
+            Tela.GanhaJogo();
     }
 
     @Override

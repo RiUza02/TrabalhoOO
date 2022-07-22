@@ -92,6 +92,8 @@ public class BotInteligente extends Bot {
     private void atirarEsquerda(int x, int y) {
         if ((x >= 0) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -108,6 +110,8 @@ public class BotInteligente extends Bot {
     private void atirarDireita(int x, int y) {
         if ((x <= 9) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -124,6 +128,8 @@ public class BotInteligente extends Bot {
     private void atiraCima(int x, int y) {
         if ((y >= 0) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -140,6 +146,8 @@ public class BotInteligente extends Bot {
     private void atiraBaixo(int x, int y) {
         if ((y <= 9) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;

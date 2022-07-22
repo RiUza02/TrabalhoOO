@@ -23,44 +23,21 @@ public class Botladrao extends Bot {
 
     @Override
     public void atirar() {
-        double sorte = Math.random();
-        if (sorte < 0.30) {
-            for (int i = 0; i < 2; i++) {
-                switch (comportamento) {
-                    case 0 -> {
-                        atirarAleatorio();
-                    }
-                    case 1 -> {
-                        atirarEsquerda(x - DislocamentoTiros, y);
-                    }
-                    case 2 -> {
-                        atirarDireita(x + DislocamentoTiros, y);
-                    }
-                    case 3 -> {
-                        atiraCima(x, y - DislocamentoTiros);
-                    }
-                    case 4 -> {
-                        atiraBaixo(x, y + DislocamentoTiros);
-                    }
-                }
+        switch (comportamento) {
+            case 0 -> {
+                atirarAleatorio();
             }
-        } else {
-            switch (comportamento) {
-                case 0 -> {
-                    atirarAleatorio();
-                }
-                case 1 -> {
-                    atirarEsquerda(x - DislocamentoTiros, y);
-                }
-                case 2 -> {
-                    atirarDireita(x + DislocamentoTiros, y);
-                }
-                case 3 -> {
-                    atiraCima(x, y - DislocamentoTiros);
-                }
-                case 4 -> {
-                    atiraBaixo(x, y + DislocamentoTiros);
-                }
+            case 1 -> {
+                atirarEsquerda(x - DislocamentoTiros, y);
+            }
+            case 2 -> {
+                atirarDireita(x + DislocamentoTiros, y);
+            }
+            case 3 -> {
+                atiraCima(x, y - DislocamentoTiros);
+            }
+            case 4 -> {
+                atiraBaixo(x, y + DislocamentoTiros);
             }
         }
         if (qTirosCertos == tamanhoNavio) {
@@ -115,6 +92,8 @@ public class Botladrao extends Bot {
     private void atirarEsquerda(int x, int y) {
         if ((x >= 0) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -131,6 +110,8 @@ public class Botladrao extends Bot {
     private void atirarDireita(int x, int y) {
         if ((x <= 9) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -147,6 +128,8 @@ public class Botladrao extends Bot {
     private void atiraCima(int x, int y) {
         if ((y >= 0) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -163,6 +146,8 @@ public class Botladrao extends Bot {
     private void atiraBaixo(int x, int y) {
         if ((y <= 9) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
+            this.x = x;
+            this.y = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;

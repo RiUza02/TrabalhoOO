@@ -71,21 +71,12 @@ public class Campo {
     }
 
     public boolean achouTudo() {
-        for (Navio nav : navio) {
-            int direcao = nav.GetDirecao();
-            switch (direcao) {
-                case 0 -> {
-                    for (int i = 0; i < nav.getTamanho(); i++) {
-                        if (mapaJogador[nav.getx() + i][nav.gety()] == 0) {
-                            return false;
-                        }
-                    }
-                }
-                case 1 -> {
-                    for (int i = 0; i < nav.getTamanho(); i++) {
-                        if (mapaJogador[nav.getx()][nav.gety() + i] == 0) {
-                            return false;
-                        }
+        for (int i = 0; i < t; i++) {
+            for (int j = 0; j < t; j++) {
+                if (mapa[i][j] != 0){
+                    if(mapa[i][j] != mapaJogador[i][j])
+                    {
+                        return false;
                     }
                 }
             }

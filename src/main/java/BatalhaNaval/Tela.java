@@ -1,12 +1,7 @@
 package BatalhaNaval;
 
 import IA.*;
-import control.Botao;
-import control.CiqueMouse;
-import control.ModoDificil;
-import control.ModoFacil;
-import control.ModoMedio;
-import control.IniciarJogo;
+import control.*;
 import java.awt.*;
 import javax.swing.*;
 import model.Jogador;
@@ -20,6 +15,7 @@ public class Tela extends JFrame {
     private static Botao[][] botoesBot;
     private static Bot bot;
     private static int nNavios;
+    private static char dificuldade;
     private static JPanel menu;
     private static JPanel menuD;
 
@@ -103,7 +99,8 @@ public class Tela extends JFrame {
 
     public void setDificuldade(int N, char A) {
 
-        this.nNavios = N;
+        this.nNavios = 1;
+        this.dificuldade = A;
         jogador = new Jogador(nNavios);
         switch (A) {
             case 'F' ->
@@ -124,7 +121,7 @@ public class Tela extends JFrame {
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 10; i++) {
                 Botao botao = new Botao(i, j);
-                botao.addMouseListener(new CiqueMouse(jogador));
+                botao.addMouseListener(new CiqueMouse(jogador, dificuldade));
                 botao.setPreferredSize(new Dimension(50, 50));
                 botao.setBorder(BorderFactory.createLineBorder(Color.black));
                 player.add(botao);
@@ -159,8 +156,6 @@ public class Tela extends JFrame {
         bot.atirar();
         int x = bot.getX();
         int y = bot.getY();
-        System.out.println(bot.achouTudo());
-        bot.imprime();
         if (bot.getCampo().getMapaPosicaoJogador(x, y) != 0) {
             botoesBot[x][y].setText("-1");
         }
@@ -179,5 +174,13 @@ public class Tela extends JFrame {
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 5) {
             botoesBot[x][y].setText("5");
         }
+        
+        if(bot.achouTudo())
+            Tela.GanhaJogo();
+    }
+
+    //tem que trabalhar isso aq ainda
+    public static void GanhaJogo() { 
+        System.out.println("Parabens filhao, vc ganhou");
     }
 }
