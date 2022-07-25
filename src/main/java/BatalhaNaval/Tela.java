@@ -3,6 +3,7 @@ package BatalhaNaval;
 import IA.*;
 import control.*;
 import java.awt.*;
+import static java.lang.System.exit;
 import javax.swing.*;
 import model.Jogador;
 //yuri Alexsander Sudre Almeida Souza   202065512b
@@ -18,6 +19,8 @@ public class Tela extends JFrame {
     private static char dificuldade;
     private static JPanel menu;
     private static JPanel menuD;
+    private static JPanel telaPlayer;
+    private static JPanel telaBot;
 
     public Tela() {
         botoesBot = new Botao[10][10];
@@ -42,15 +45,15 @@ public class Tela extends JFrame {
         rank.setPreferredSize(new Dimension(300, 50));
         rank.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        JButton outros = new JButton();
-        outros.setText("BOTAO");
-        //outros.addMouseListener();
-        outros.setPreferredSize(new Dimension(300, 50));
-        outros.setBorder(BorderFactory.createLineBorder(Color.black));
+        JButton Sair = new JButton();
+        Sair.setText("SAIR");
+        Sair.addMouseListener(new FechaTela(this));
+        Sair.setPreferredSize(new Dimension(300, 50));
+        Sair.setBorder(BorderFactory.createLineBorder(Color.black));
 
         menu.add(iniciar);
         menu.add(rank);
-        menu.add(outros);
+        menu.add(Sair);
         menu.setSize(400, 300);
 
         this.add(menu);
@@ -99,7 +102,7 @@ public class Tela extends JFrame {
 
     public void setDificuldade(int N, char A) {
 
-        this.nNavios = 1;
+        this.nNavios = N;
         this.dificuldade = A;
         jogador = new Jogador(nNavios);
         switch (A) {
@@ -108,42 +111,42 @@ public class Tela extends JFrame {
             case 'M' ->
                 bot = new BotInteligente(nNavios);
             case 'D' ->
-                bot = new Botladrao(nNavios);
+                bot = new BotLadrao(nNavios);
         }
 
     }
 
     public void desenha() {
         this.remove(menuD);
-        JPanel player = new JPanel();
-        player.setLayout(new GridLayout(10, 10));
-        player.setBorder(BorderFactory.createTitledBorder("Player"));
+        telaPlayer = new JPanel();
+        telaPlayer.setLayout(new GridLayout(10, 10));
+        telaPlayer.setBorder(BorderFactory.createTitledBorder("Player"));
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 10; i++) {
                 Botao botao = new Botao(i, j);
-                botao.addMouseListener(new CiqueMouse(jogador, dificuldade));
+                botao.addMouseListener(new CiqueMouse(jogador, dificuldade, this));
                 botao.setPreferredSize(new Dimension(50, 50));
                 botao.setBorder(BorderFactory.createLineBorder(Color.black));
-                player.add(botao);
+                telaPlayer.add(botao);
             }
         }
 
-        JPanel bot = new JPanel();
-        bot.setLayout(new GridLayout(10, 10));
-        bot.setBorder(BorderFactory.createTitledBorder("bot"));
+        telaBot = new JPanel();
+        telaBot.setLayout(new GridLayout(10, 10));
+        telaBot.setBorder(BorderFactory.createTitledBorder("bot"));
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 10; i++) {
                 Botao botao = new Botao(i, j);
                 botao.setPreferredSize(new Dimension(10, 10));
                 botao.setBorder(BorderFactory.createLineBorder(Color.black));
                 botao.setVisible(true);
-                bot.add(botao);
+                telaBot.add(botao);
                 botoesBot[i][j] = botao;
             }
         }
 
-        this.add(player, BorderLayout.WEST);
-        this.add(bot, BorderLayout.EAST);
+        this.add(telaPlayer, BorderLayout.WEST);
+        this.add(telaBot, BorderLayout.EAST);
 
         this.setVisible(true);
         this.setLayout(new GridLayout(1, 2));
@@ -152,10 +155,14 @@ public class Tela extends JFrame {
 
     }
 
-    public static void mouseClickedBot() {
+    public void mouseClickedBot() {
         bot.atirar();
         int x = bot.getX();
         int y = bot.getY();
+        System.out.println(x);
+        System.out.println(y);
+
+        bot.imprime();
         if (bot.getCampo().getMapaPosicaoJogador(x, y) != 0) {
             botoesBot[x][y].setText("-1");
         }
@@ -174,13 +181,26 @@ public class Tela extends JFrame {
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 5) {
             botoesBot[x][y].setText("5");
         }
-        
-        if(bot.achouTudo())
-            Tela.GanhaJogo();
+        if (bot.achouTudo()) {
+            GanhaJogo(2);
+        }
     }
 
-    //tem que trabalhar isso aq ainda
-    public static void GanhaJogo() { 
-        System.out.println("Parabens filhao, vc ganhou");
+    public void GanhaJogo(int i) {
+        if (i == 1) {
+            GanhaJogoPlayer();
+        } else {
+            GanhaJogoBot();
+        }
+    }
+
+    public void GanhaJogoPlayer() {
+        JOptionPane.showMessageDialog(null, "Voce venceu!");
+        exit(0);
+    }
+
+    public void GanhaJogoBot() {
+        JOptionPane.showMessageDialog(null, "Voce perdeu...");
+        exit(0);
     }
 }

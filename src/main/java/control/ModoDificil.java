@@ -19,7 +19,7 @@ public class ModoDificil implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.tela.setDificuldade(10, 'D');
+        this.tela.setDificuldade(15, 'D');
         this.tela.desenha();
         this.tela.repaint();
     }

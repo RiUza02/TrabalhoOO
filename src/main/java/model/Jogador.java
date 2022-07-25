@@ -3,16 +3,16 @@ package model;
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
-
 public class Jogador {
 
     private final Campo campo;
     String nome;
-    int pontos;
-
+    int pontos, idade;
+    
     public Jogador(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);
         campo.imprime();
+        pontos = 0;
     }
 
     public String getNome() {
@@ -30,7 +30,10 @@ public class Jogador {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    int idade;
+
+    public void pontosAdd () {
+        this.pontos++;
+    }
 
     public void atirar(int x, int y) {
         campo.atirar(x, y);
@@ -42,14 +45,6 @@ public class Jogador {
 
     public void imprime() {
         campo.imprimeMapaJogador();
-    }
-
-    public int getPontos() {
-        return pontos;
-    }
-
-    public void setPontos(int pontos) {
-        this.pontos = pontos;
     }
 
     public boolean achouTudo() {

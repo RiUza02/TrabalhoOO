@@ -5,17 +5,19 @@ import model.Campo;
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
-public class Botladrao extends Bot {
+public class BotLadrao extends Bot {
 
     private final Campo campo;
     private int x;
     private int y;
+    private int xAtual;
+    private int yAtual;
     private int tamanhoNavio;
     private int comportamento;
     private int DislocamentoTiros;
     private int qTirosCertos;
 
-    public Botladrao(int quantidadeNavio) {
+    public BotLadrao(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);
         comportamento = 0;
         DislocamentoTiros = 0;
@@ -64,18 +66,20 @@ public class Botladrao extends Bot {
 
     @Override
     public int getX() {
-        return x;
+        return xAtual;
     }
 
     @Override
     public int getY() {
-        return y;
+        return yAtual;
     }
 
     //-----------------------------------------------------------------------------
     private void atirarAleatorio() {
         x = (int) Math.round((Math.random() * 9));
         y = (int) Math.round((Math.random() * 9));
+        xAtual = x;
+        yAtual = y;
         if (campo.getMapaPosicaoJogador(x, y) == 0) {
             campo.atirar(x, y);
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
@@ -92,8 +96,8 @@ public class Botladrao extends Bot {
     private void atirarEsquerda(int x, int y) {
         if ((x >= 0) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
-            this.x = x;
-            this.y = y;
+            this.xAtual = x;
+            this.yAtual = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -110,8 +114,8 @@ public class Botladrao extends Bot {
     private void atirarDireita(int x, int y) {
         if ((x <= 9) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
-            this.x = x;
-            this.y = y;
+            this.xAtual = x;
+            this.yAtual = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -128,8 +132,8 @@ public class Botladrao extends Bot {
     private void atiraCima(int x, int y) {
         if ((y >= 0) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
-            this.x = x;
-            this.y = y;
+            this.xAtual = x;
+            this.yAtual = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;
@@ -146,8 +150,8 @@ public class Botladrao extends Bot {
     private void atiraBaixo(int x, int y) {
         if ((y <= 9) && (campo.getMapaPosicaoJogador(x, y) != -1)) {
             campo.atirar(x, y);
-            this.x = x;
-            this.y = y;
+            this.xAtual = x;
+            this.yAtual = y;
             if (campo.getMapaPosicaoJogador(x, y) != -1) {
                 DislocamentoTiros++;
                 qTirosCertos++;

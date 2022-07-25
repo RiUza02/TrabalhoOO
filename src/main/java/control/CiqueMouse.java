@@ -12,11 +12,13 @@ public class CiqueMouse implements MouseListener {
     private final Campo campo;
     private final Jogador jogador;
     private final char dificuldade;
+    private final Tela tela;
 
-    public CiqueMouse(Jogador jogador, char dificuldade) {
+    public CiqueMouse(Jogador jogador, char dificuldade, Tela tela) {
         this.jogador = jogador;
         this.campo = jogador.getCampo();
         this.dificuldade = dificuldade;
+        this.tela = tela;
     }
 
     @Override
@@ -28,27 +30,32 @@ public class CiqueMouse implements MouseListener {
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 1) {
             botao.setText("1");
+            jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 2) {
             botao.setText("2");
+            jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 3) {
             botao.setText("3");
+            jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 4) {
             botao.setText("4");
+            jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 5) {
             botao.setText("5");
+            jogador.pontosAdd();
         }
         double sorte = Math.random();
-        if ((sorte < 0.30) && (dificuldade == 'D')) {
-            Tela.mouseClickedBot();
+        if ((sorte < 0.33) && (dificuldade == 'D')) {
+            tela.mouseClickedBot();
         }
-        Tela.mouseClickedBot();
-        
-        if(jogador.achouTudo())
-            Tela.GanhaJogo();
+        tela.mouseClickedBot();
+        if (jogador.achouTudo()) {
+            tela.GanhaJogo(1);
+        }
     }
 
     @Override
