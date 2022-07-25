@@ -8,6 +8,7 @@ public class Jogador {
 
     private final Campo campo;
     String nome;
+    int pontos;
 
     public Jogador(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);
@@ -41,6 +42,14 @@ public class Jogador {
 
     public void imprime() {
         campo.imprimeMapaJogador();
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
     }
 
     public boolean achouTudo() {
