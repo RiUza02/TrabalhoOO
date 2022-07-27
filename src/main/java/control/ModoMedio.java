@@ -12,9 +12,7 @@ public class ModoMedio implements ActionListener {
     Tela tela;
 
     public ModoMedio(Tela tela) {
-
         this.tela = tela;
-
     }
 
     @Override

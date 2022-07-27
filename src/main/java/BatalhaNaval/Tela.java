@@ -29,7 +29,6 @@ public class Tela extends JFrame {
     }
 
     public void TelaMenu() {
-        //menu.setLayout(new GridLayout(10, 10));
         menu.setBorder(BorderFactory.createTitledBorder("Menu"));
 
         JButton iniciar = new JButton();
@@ -60,11 +59,9 @@ public class Tela extends JFrame {
         this.setVisible(true);
         this.setSize(500, 400);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-
     }
 
     public void setDificuldadeMenu() {
-
         this.remove(menu);
         JButton facil = new JButton();
         facil.setText("FÁCIL");
@@ -101,7 +98,6 @@ public class Tela extends JFrame {
     }
 
     public void setDificuldade(int N, char A) {
-
         this.nNavios = N;
         this.dificuldade = A;
         jogador = new Jogador(nNavios);
@@ -147,7 +143,6 @@ public class Tela extends JFrame {
 
         this.add(telaPlayer, BorderLayout.WEST);
         this.add(telaBot, BorderLayout.EAST);
-
         this.setVisible(true);
         this.setLayout(new GridLayout(1, 2));
         this.setSize(1000, 500);
@@ -159,10 +154,6 @@ public class Tela extends JFrame {
         bot.atirar();
         int x = bot.getX();
         int y = bot.getY();
-        System.out.println(x);
-        System.out.println(y);
-
-        bot.imprime();
         if (bot.getCampo().getMapaPosicaoJogador(x, y) != 0) {
             botoesBot[x][y].setText("-1");
         }
@@ -196,11 +187,15 @@ public class Tela extends JFrame {
 
     public void GanhaJogoPlayer() {
         JOptionPane.showMessageDialog(null, "Voce venceu!");
+        String nome = JOptionPane.showInputDialog(null, "Digite o seu nome:", "Name", JOptionPane.QUESTION_MESSAGE);
+        jogador.setNome(nome);
         exit(0);
     }
 
     public void GanhaJogoBot() {
         JOptionPane.showMessageDialog(null, "Voce perdeu...");
+        String nome = JOptionPane.showInputDialog(null, "Digite o seu nome:", "Name", JOptionPane.QUESTION_MESSAGE);
+        jogador.setNome(nome);
         exit(0);
     }
 }

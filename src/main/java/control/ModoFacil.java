@@ -12,9 +12,7 @@ public class ModoFacil implements ActionListener {
     Tela tela;
 
     public ModoFacil(Tela tela) {
-
         this.tela = tela;
-
     }
 
     @Override

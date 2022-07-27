@@ -7,12 +7,13 @@ public class Jogador {
 
     private final Campo campo;
     String nome;
-    int pontos, idade;
+    int pontos;
     
     public Jogador(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);
         campo.imprime();
         pontos = 0;
+        nome = "nameless";
     }
 
     public String getNome() {
@@ -21,14 +22,6 @@ public class Jogador {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public void pontosAdd () {

@@ -8,12 +8,10 @@ import javax.swing.JButton;
 public class Botao extends JButton {
 
     public int x, y;
-    
-    public Botao(int x, int y){
-        
+
+    public Botao(int x, int y) {
         this.x = x;
         this.y = y;
-       
     }
 
     public int getx() {
