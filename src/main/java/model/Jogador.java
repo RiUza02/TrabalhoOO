@@ -19,6 +19,14 @@ public class Jogador {
     public String getNome() {
         return nome;
     }
+    
+    public int getPontos(){
+        return this.pontos;
+    }
+    
+    public void setPontos(int pontos){
+        this.pontos = pontos;
+    }
 
     public void setNome(String nome) {
         this.nome = nome;

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class LeituraArquivo {
 
-    void LeArquivo() {
+    /*void LeArquivo() {
         try {
             String texto = Arquivo.lerArquivo("local");
             System.out.println(texto);
@@ -19,5 +19,5 @@ public class LeituraArquivo {
         Scanner Teclado = new Scanner(System.in);
         conteudo = Teclado.nextLine();
         Arquivo.escreverArquivo("local", conteudo);
-    }
+    }*/
 }

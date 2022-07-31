@@ -1,25 +1,27 @@
 package Outros;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+import model.Jogador;
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
 public class Arquivo {
 
-    public static String lerArquivo(String caminho) throws FileNotFoundException {
-        StringBuilder conteudo = new StringBuilder();
+    public static ArrayList<String> lerArquivo(String caminho) throws FileNotFoundException {
+        ArrayList<String> conteudo = new ArrayList<String>();
         File arquivo = new File(caminho);
         Scanner leitor = new Scanner(arquivo);
 
         while (leitor.hasNextLine()) {
-            conteudo.append(leitor.nextLine()).append('\n');
+            conteudo.add(leitor.nextLine() + '\n');
         }
-        return conteudo.toString();
+        return conteudo;
     }
 
-    public static void escreverArquivo(String caminho, String conteudo) {
+    public static void escreverArquivo(String caminho, ArrayList<Jogador> conteudo) {
         FileWriter fwArquivo;
         BufferedWriter bwArquivo;
         try {
@@ -27,7 +29,9 @@ public class Arquivo {
             fwArquivo = new FileWriter(arquivo, false);
             bwArquivo = new BufferedWriter(fwArquivo);
 
-            bwArquivo.write(conteudo + '\n');
+            for (int i = 0; i < 10; i++) {
+                bwArquivo.write(conteudo.get(i).getNome() + "_____" + conteudo.get(i).getPontos() + '\n');
+            }
 
             bwArquivo.close();
             fwArquivo.close();
