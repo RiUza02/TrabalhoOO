@@ -5,9 +5,7 @@ import Outros.Arquivo;
 import Outros.Ranking;
 import control.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import static java.lang.System.exit;
 import java.util.ArrayList;
 import javax.swing.*;
 import model.Jogador;
@@ -25,52 +23,21 @@ public class Tela extends JFrame {
     private static JPanel menu;
     private static JPanel menuD;
     private static JPanel rank;
-    private static JPanel menuR;
     private static JPanel telaPlayer;
     private static JPanel telaBot;
-    private static Ranking rak;
-
-    
 
     public Tela() {
         botoesBot = new Botao[10][10];
         menu = new JPanel();
         menuD = new JPanel();
         this.botoesMenu();
-        this.boteosDif();
+        this.CriaBotoesDificuldade();
     }
-    
-    public static JPanel getRank(){
+
+    public static JPanel getRank() {
         return rank;
     }
-    
-    private void botoesMenu(){
-        menu.setBorder(BorderFactory.createTitledBorder("BATALHA NAVAL"));
-        JButton iniciar = new JButton();
-        iniciar.setText("INICIAR");
-        iniciar.addActionListener(new IniciarJogo(this) {
-        });
-        iniciar.setPreferredSize(new Dimension(300, 50));
-        iniciar.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        JButton rank = new JButton();
-        rank.setText("PLACAR");
-        rank.addActionListener(new MostraRanking(this));
-        rank.setPreferredSize(new Dimension(300, 50));
-        rank.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        JButton Sair = new JButton();
-        Sair.setText("SAIR");
-        Sair.addMouseListener(new FechaTela(this));
-        Sair.setPreferredSize(new Dimension(300, 50));
-        Sair.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        menu.add(iniciar);
-        menu.add(rank);
-        menu.add(Sair);
-        menu.setSize(400, 300);
-    }
-    
     public void TelaMenu() {
         this.remove(menu);
 
@@ -84,24 +51,17 @@ public class Tela extends JFrame {
         this.remove(menu);
 
         rank = new JPanel();
-        //JPanel lista = new JPanel();
         rank.setBorder(BorderFactory.createTitledBorder("Placar"));
-        /*rank.setLayout(new BorderLayout());
-        rank.setPreferredSize(new Dimension(200, 300));*/
 
-        ArrayList<String> jogadoresss = new ArrayList<String>();
+        ArrayList<String> jogadoresss = new ArrayList<>();
         ArrayList<String> conteudo;
-
         Arquivo arq = new Arquivo();
-        try {
 
+        try {
             conteudo = arq.lerArquivo("Data\\AAAAA.txt");
             for (int j = 0; j < conteudo.size(); j++) {
-
                 jogadoresss.add(conteudo.get(j));
-
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado!");
         }
@@ -112,67 +72,22 @@ public class Tela extends JFrame {
         JScrollPane scroll = new JScrollPane(lista);
         rank.add(scroll);
         rank.setBorder(BorderFactory.createRaisedBevelBorder());
-        
-        //______________________________________________________________________
+
         JButton backToMenu = new JButton();
         backToMenu.setText("Voltar para o Menu");
         backToMenu.addActionListener(new VoltaMenu(this));
         backToMenu.setPreferredSize(new Dimension(300, 50));
         backToMenu.setBorder(BorderFactory.createLineBorder(Color.black));
         rank.add(backToMenu);
-        
+
         JButton close = new JButton();
         close.setText("Sair");
         close.addMouseListener(new FechaTela(this));
         close.setPreferredSize(new Dimension(300, 50));
         close.setBorder(BorderFactory.createLineBorder(Color.black));
         rank.add(close);
-        
 
         this.add(rank);
-        //this.add(backToMenu);
-        this.setVisible(true);
-        this.setSize(500, 400);
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-    }
-    
-    private void boteosDif(){
-        
-        JButton facil = new JButton();
-        facil.setText("FÁCIL");
-        facil.setToolTipText("Quase imposível perder");
-        facil.addActionListener(new ModoFacil(this) {
-        });
-        facil.setPreferredSize(new Dimension(300, 50));
-        facil.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        JButton medio = new JButton();
-        medio.setText("MÉDIO");
-        medio.setToolTipText("+ ou -");
-        medio.addActionListener(new ModoMedio(this) {
-        });
-        medio.setPreferredSize(new Dimension(300, 50));
-        medio.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        JButton dificil = new JButton();
-        dificil.setText("DIFICIL");
-        dificil.setToolTipText("Você vai perder, otário!");
-        dificil.addActionListener(new ModoDificil(this) {
-        });
-        dificil.setPreferredSize(new Dimension(300, 50));
-        dificil.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        menuD.add(facil);
-        menuD.add(medio);
-        menuD.add(dificil);
-        
-    }
-
-    public void setDificuldadeMenu() {
-        this.remove(menu);
-        
-
-        this.add(menuD);
         this.setVisible(true);
         this.setSize(500, 400);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -193,7 +108,7 @@ public class Tela extends JFrame {
 
     }
 
-    public void desenha() {
+    public void desenhaJogo() {
         this.remove(menuD);
         telaPlayer = new JPanel();
         telaPlayer.setLayout(new GridLayout(10, 10));
@@ -201,7 +116,7 @@ public class Tela extends JFrame {
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 10; i++) {
                 Botao botao = new Botao(i, j);
-                botao.addMouseListener(new CiqueMouse(jogador, dificuldade, this));
+                botao.addMouseListener(new CliqueMouse(jogador, dificuldade, this));
                 botao.setPreferredSize(new Dimension(50, 50));
                 botao.setBorder(BorderFactory.createLineBorder(Color.black));
                 telaPlayer.add(botao);
@@ -228,7 +143,6 @@ public class Tela extends JFrame {
         this.setLayout(new GridLayout(1, 2));
         this.setSize(1000, 500);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-
     }
 
     public void mouseClickedBot() {
@@ -236,8 +150,8 @@ public class Tela extends JFrame {
         int x = bot.getX();
         int y = bot.getY();
         if (bot.getCampo().getMapaPosicaoJogador(x, y) != 0) {
-            botoesBot[x][y].setIcon(new ImageIcon("agu.png")); 
-       }
+            botoesBot[x][y].setIcon(new ImageIcon("agu.png"));
+        }
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 1) {
             botoesBot[x][y].setIcon(new ImageIcon("Pow.png"));
         }
@@ -266,7 +180,7 @@ public class Tela extends JFrame {
         }
     }
 
-    public void GanhaJogoPlayer() {
+    private void GanhaJogoPlayer() {
         JOptionPane.showMessageDialog(null, "Voce venceu!");
         String nome = JOptionPane.showInputDialog(null, "Digite o seu nome:", "Name", JOptionPane.QUESTION_MESSAGE);
         jogador.setNome(nome);
@@ -275,10 +189,9 @@ public class Tela extends JFrame {
         this.remove(telaPlayer);
         this.TelaMenu();
         this.repaint();
-        
     }
 
-    public void GanhaJogoBot() {
+    private void GanhaJogoBot() {
         JOptionPane.showMessageDialog(null, "Voce perdeu...");
         String nome = JOptionPane.showInputDialog(null, "Digite o seu nome:", "Name", JOptionPane.QUESTION_MESSAGE);
         jogador.setNome(nome);
@@ -287,5 +200,72 @@ public class Tela extends JFrame {
         this.remove(telaBot);
         this.TelaMenu();
         this.repaint();
+    }
+
+    //------------------------------------------------------------------------
+    private void botoesMenu() {
+        menu.setBorder(BorderFactory.createTitledBorder("BATALHA NAVAL"));
+        JButton iniciar = new JButton();
+        iniciar.setText("INICIAR");
+        iniciar.addActionListener(new IniciarJogo(this) {
+        });
+        iniciar.setPreferredSize(new Dimension(300, 50));
+        iniciar.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        JButton rank = new JButton();
+        rank.setText("PLACAR");
+        rank.addActionListener(new MostraRanking(this));
+        rank.setPreferredSize(new Dimension(300, 50));
+        rank.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        JButton Sair = new JButton();
+        Sair.setText("SAIR");
+        Sair.addMouseListener(new FechaTela(this));
+        Sair.setPreferredSize(new Dimension(300, 50));
+        Sair.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        menu.add(iniciar);
+        menu.add(rank);
+        menu.add(Sair);
+        menu.setSize(400, 300);
+    }
+
+    private void CriaBotoesDificuldade() {
+        JButton facil = new JButton();
+        facil.setText("FÁCIL");
+        facil.setToolTipText("Quase imposível perder");
+        facil.addActionListener(new ModoFacil(this) {
+        });
+        facil.setPreferredSize(new Dimension(300, 50));
+        facil.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        JButton medio = new JButton();
+        medio.setText("MÉDIO");
+        medio.setToolTipText("+ ou -");
+        medio.addActionListener(new ModoMedio(this) {
+        });
+        medio.setPreferredSize(new Dimension(300, 50));
+        medio.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        JButton dificil = new JButton();
+        dificil.setText("DIFICIL");
+        dificil.setToolTipText("Você vai perder, otário!");
+        dificil.addActionListener(new ModoDificil(this) {
+        });
+        dificil.setPreferredSize(new Dimension(300, 50));
+        dificil.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        menuD.add(facil);
+        menuD.add(medio);
+        menuD.add(dificil);
+    }
+
+    public void setMenuDificuldade() {
+        this.remove(menu);
+
+        this.add(menuD);
+        this.setVisible(true);
+        this.setSize(500, 400);
+        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
     }
 }

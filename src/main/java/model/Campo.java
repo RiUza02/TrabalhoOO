@@ -1,8 +1,8 @@
 package model;
-
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
-//Victor Aluisio dos Santos Oliveira    20206509ab
+//Victor Aluisio dos Santos Oliveira    202065091ab
+
 public class Campo {
 
     private static final int t = 10; //tamanho do campo (caso queira ajustar depois)
@@ -73,9 +73,8 @@ public class Campo {
     public boolean achouTudo() {
         for (int i = 0; i < t; i++) {
             for (int j = 0; j < t; j++) {
-                if (mapa[i][j] != 0){
-                    if(mapa[i][j] != mapaJogador[i][j])
-                    {
+                if (mapa[i][j] != 0) {
+                    if (mapa[i][j] != mapaJogador[i][j]) {
                         return false;
                     }
                 }

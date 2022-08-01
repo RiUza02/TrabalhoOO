@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 import BatalhaNaval.Tela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    202065091ab
 
-/**
- *
- * @author victo
- */
-public class MostraRanking implements ActionListener{
-    
-    
+public class MostraRanking implements ActionListener {
+
     Tela tela;
 
     public MostraRanking(Tela tela) {
@@ -26,5 +20,5 @@ public class MostraRanking implements ActionListener{
         this.tela.configuraRanking();
         this.tela.repaint();
     }
-    
+
 }

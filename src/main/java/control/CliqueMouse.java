@@ -1,22 +1,21 @@
 package control;
 
 import BatalhaNaval.Tela;
-import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import model.*;
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
-//Victor Aluisio dos Santos Oliveira    20206509ab
+//Victor Aluisio dos Santos Oliveira    202065091ab
 
-public class CiqueMouse implements MouseListener {
+public class CliqueMouse implements MouseListener {
 
     private final Campo campo;
     private final Jogador jogador;
     private final char dificuldade;
     private final Tela tela;
 
-    public CiqueMouse(Jogador jogador, char dificuldade, Tela tela) {
+    public CliqueMouse(Jogador jogador, char dificuldade, Tela tela) {
         this.jogador = jogador;
         this.campo = jogador.getCampo();
         this.dificuldade = dificuldade;
