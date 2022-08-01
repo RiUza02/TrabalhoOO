@@ -36,16 +36,16 @@ public class Tela extends JFrame {
         botoesBot = new Botao[10][10];
         menu = new JPanel();
         menuD = new JPanel();
+        this.botoesMenu();
+        this.boteosDif();
     }
     
     public static JPanel getRank(){
         return rank;
     }
-
-    public void TelaMenu() {
-        this.remove(menu);
-        menu.setBorder(BorderFactory.createTitledBorder("Menu"));
-
+    
+    private void botoesMenu(){
+        menu.setBorder(BorderFactory.createTitledBorder("BATALHA NAVAL"));
         JButton iniciar = new JButton();
         iniciar.setText("INICIAR");
         iniciar.addActionListener(new IniciarJogo(this) {
@@ -69,6 +69,10 @@ public class Tela extends JFrame {
         menu.add(rank);
         menu.add(Sair);
         menu.setSize(400, 300);
+    }
+    
+    public void TelaMenu() {
+        this.remove(menu);
 
         this.add(menu);
         this.setVisible(true);
@@ -91,7 +95,7 @@ public class Tela extends JFrame {
         Arquivo arq = new Arquivo();
         try {
 
-            conteudo = arq.lerArquivo("C:\\Users\\victo\\OneDrive\\Área de Trabalho\\AAAAA.txt");
+            conteudo = arq.lerArquivo("Data\\AAAAA.txt");
             for (int j = 0; j < conteudo.size(); j++) {
 
                 jogadoresss.add(conteudo.get(j));
@@ -112,7 +116,6 @@ public class Tela extends JFrame {
         //______________________________________________________________________
         JButton backToMenu = new JButton();
         backToMenu.setText("Voltar para o Menu");
-        backToMenu.setToolTipText("Quase imposível perder");
         backToMenu.addActionListener(new VoltaMenu(this));
         backToMenu.setPreferredSize(new Dimension(300, 50));
         backToMenu.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -120,7 +123,6 @@ public class Tela extends JFrame {
         
         JButton close = new JButton();
         close.setText("Sair");
-        close.setToolTipText("Quase imposível perder");
         close.addMouseListener(new FechaTela(this));
         close.setPreferredSize(new Dimension(300, 50));
         close.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -133,9 +135,9 @@ public class Tela extends JFrame {
         this.setSize(500, 400);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
     }
-
-    public void setDificuldadeMenu() {
-        this.remove(menu);
+    
+    private void boteosDif(){
+        
         JButton facil = new JButton();
         facil.setText("FÁCIL");
         facil.setToolTipText("Quase imposível perder");
@@ -146,7 +148,7 @@ public class Tela extends JFrame {
 
         JButton medio = new JButton();
         medio.setText("MÉDIO");
-        medio.setToolTipText("Ainda é facil");
+        medio.setToolTipText("+ ou -");
         medio.addActionListener(new ModoMedio(this) {
         });
         medio.setPreferredSize(new Dimension(300, 50));
@@ -154,7 +156,7 @@ public class Tela extends JFrame {
 
         JButton dificil = new JButton();
         dificil.setText("DIFICIL");
-        dificil.setToolTipText("Ok, esse é um desafio");
+        dificil.setToolTipText("Você vai perder, otário!");
         dificil.addActionListener(new ModoDificil(this) {
         });
         dificil.setPreferredSize(new Dimension(300, 50));
@@ -163,6 +165,12 @@ public class Tela extends JFrame {
         menuD.add(facil);
         menuD.add(medio);
         menuD.add(dificil);
+        
+    }
+
+    public void setDificuldadeMenu() {
+        this.remove(menu);
+        
 
         this.add(menuD);
         this.setVisible(true);
@@ -263,6 +271,7 @@ public class Tela extends JFrame {
         String nome = JOptionPane.showInputDialog(null, "Digite o seu nome:", "Name", JOptionPane.QUESTION_MESSAGE);
         jogador.setNome(nome);
         Ranking rank = new Ranking(jogador);
+        this.remove(telaBot);
         this.remove(telaPlayer);
         this.TelaMenu();
         this.repaint();
@@ -275,6 +284,7 @@ public class Tela extends JFrame {
         jogador.setNome(nome);
         Ranking rank = new Ranking(jogador);
         this.remove(telaPlayer);
+        this.remove(telaBot);
         this.TelaMenu();
         this.repaint();
     }

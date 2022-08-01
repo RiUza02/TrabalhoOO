@@ -22,7 +22,7 @@ public class Ranking {
 
         try {
 
-            conteudo = arq.lerArquivo("C:\\Users\\victo\\OneDrive\\Área de Trabalho\\AAAAA.txt");
+            conteudo = arq.lerArquivo("Data\\AAAAA.txt");
 
             for (int i = 0; i < 11; i++) {
 
@@ -88,7 +88,7 @@ public class Ranking {
 
         Arquivo arq = new Arquivo();
 
-        arq.escreverArquivo("C:\\Users\\victo\\OneDrive\\Área de Trabalho\\AAAAA.txt", jogadores);
+        arq.escreverArquivo("Data\\AAAAA.txt", jogadores);
 
     }
     
