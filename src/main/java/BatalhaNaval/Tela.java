@@ -5,6 +5,7 @@ import Outros.Arquivo;
 import Outros.Ranking;
 import control.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import static java.lang.System.exit;
 import java.util.ArrayList;
@@ -28,51 +29,21 @@ public class Tela extends JFrame {
     private static JPanel telaPlayer;
     private static JPanel telaBot;
     private static Ranking rak;
-    private static int lastIndex;
-    private static JTextField tfNome;
-    private static JTextField tfTelefone;
 
-    private JList<Jogador> lista;
-
-    public JList<Jogador> getLista() {
-        return lista;
-    }
-
-    public void setLista(JList<Jogador> lista) {
-        this.lista = lista;
-    }
-
-    public int getLastIndex() {
-        return lastIndex;
-    }
-
-    public void setLastIndex(int lastIndex) {
-        this.lastIndex = lastIndex;
-    }
-
-    public JTextField getTfNome() {
-        return tfNome;
-    }
-
-    public void setTfNome(JTextField tfNome) {
-        this.tfNome = tfNome;
-    }
-
-    public JTextField getTfTelefone() {
-        return tfTelefone;
-    }
-
-    public void setTfTelefone(JTextField tfTelefone) {
-        this.tfTelefone = tfTelefone;
-    }
+    
 
     public Tela() {
         botoesBot = new Botao[10][10];
         menu = new JPanel();
         menuD = new JPanel();
     }
+    
+    public static JPanel getRank(){
+        return rank;
+    }
 
     public void TelaMenu() {
+        this.remove(menu);
         menu.setBorder(BorderFactory.createTitledBorder("Menu"));
 
         JButton iniciar = new JButton();
@@ -106,33 +77,13 @@ public class Tela extends JFrame {
     }
 
     public void configuraRanking() {
-        /* JPanel jpContatos = new JPanel();
-        jpContatos.setBorder(BorderFactory.createTitledBorder("Placar"));
-        jpContatos.setLayout(new BorderLayout());
-        jpContatos.setPreferredSize(new Dimension(200, 300));
-
-        DefaultListModel<Jogador> model = new DefaultListModel<>();
-        
-        lista = new JList<>(model);
-        lista.setVisible(true);
-        lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        lista.addListSelectionListener(new TratarLista(this));
-        jpContatos.add(new JScrollPane(lista), BorderLayout.CENTER);
-
-//        JPanel botaoPainel = new JPanel();
-//
-//        botaoPainel.setLayout(new GridLayout(1, 2));
-//        jpContatos.add(botaoPainel, BorderLayout.SOUTH);
-
-        menu.add(jpContatos);
-        menu.repaint();*/
-
         this.remove(menu);
 
         rank = new JPanel();
+        //JPanel lista = new JPanel();
         rank.setBorder(BorderFactory.createTitledBorder("Placar"));
-        rank.setLayout(new BorderLayout());
-        rank.setPreferredSize(new Dimension(200, 300));
+        /*rank.setLayout(new BorderLayout());
+        rank.setPreferredSize(new Dimension(200, 300));*/
 
         ArrayList<String> jogadoresss = new ArrayList<String>();
         ArrayList<String> conteudo;
@@ -152,13 +103,32 @@ public class Tela extends JFrame {
         }
 
         JList lista = new JList(jogadoresss.toArray());
-        lista.setSize(200, 200);
+        lista.setPreferredSize(new Dimension(200, 300));
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scroll = new JScrollPane(lista);
         rank.add(scroll);
         rank.setBorder(BorderFactory.createRaisedBevelBorder());
+        
+        //______________________________________________________________________
+        JButton backToMenu = new JButton();
+        backToMenu.setText("Voltar para o Menu");
+        backToMenu.setToolTipText("Quase imposível perder");
+        backToMenu.addActionListener(new VoltaMenu(this));
+        backToMenu.setPreferredSize(new Dimension(300, 50));
+        backToMenu.setBorder(BorderFactory.createLineBorder(Color.black));
+        rank.add(backToMenu);
+        
+        JButton close = new JButton();
+        close.setText("Sair");
+        close.setToolTipText("Quase imposível perder");
+        close.addMouseListener(new FechaTela(this));
+        close.setPreferredSize(new Dimension(300, 50));
+        close.setBorder(BorderFactory.createLineBorder(Color.black));
+        rank.add(close);
+        
 
         this.add(rank);
+        //this.add(backToMenu);
         this.setVisible(true);
         this.setSize(500, 400);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -293,14 +263,19 @@ public class Tela extends JFrame {
         String nome = JOptionPane.showInputDialog(null, "Digite o seu nome:", "Name", JOptionPane.QUESTION_MESSAGE);
         jogador.setNome(nome);
         Ranking rank = new Ranking(jogador);
-        exit(0);
+        this.remove(telaPlayer);
+        this.TelaMenu();
+        this.repaint();
+        
     }
 
     public void GanhaJogoBot() {
         JOptionPane.showMessageDialog(null, "Voce perdeu...");
         String nome = JOptionPane.showInputDialog(null, "Digite o seu nome:", "Name", JOptionPane.QUESTION_MESSAGE);
-        Ranking rank = new Ranking(jogador);
         jogador.setNome(nome);
-        exit(0);
+        Ranking rank = new Ranking(jogador);
+        this.remove(telaPlayer);
+        this.TelaMenu();
+        this.repaint();
     }
 }
