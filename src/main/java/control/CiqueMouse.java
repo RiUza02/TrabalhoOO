@@ -1,7 +1,9 @@
 package control;
 
 import BatalhaNaval.Tela;
+import java.awt.Image;
 import java.awt.event.*;
+import javax.swing.ImageIcon;
 import model.*;
 //yuri Alexsander Sudre Almeida Souza   202065512b
 //Rafaela da Silva Cunha    202065509b
@@ -26,26 +28,32 @@ public class CiqueMouse implements MouseListener {
         Botao botao = (Botao) me.getSource();
         jogador.atirar(botao.getx(), botao.gety());
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) != 0) {
-            botao.setText("Agua");
+            ImageIcon agua = new ImageIcon("agu.png");
+            botao.setIcon(agua);
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 1) {
-            botao.setText("1");
+            ImageIcon agua = new ImageIcon("Pow.png");
+            botao.setIcon(agua);
             jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 2) {
-            botao.setText("2");
+            ImageIcon agua = new ImageIcon("Pow.png");
+            botao.setIcon(agua);
             jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 3) {
-            botao.setText("3");
+            ImageIcon agua = new ImageIcon("Pow.png");
+            botao.setIcon(agua);
             jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 4) {
-            botao.setText("4");
+            ImageIcon agua = new ImageIcon("Pow.png");
+            botao.setIcon(agua);
             jogador.pontosAdd();
         }
         if (campo.getMapaPosicaoJogador(botao.getx(), botao.gety()) == 5) {
-            botao.setText("5");
+            ImageIcon agua = new ImageIcon("Pow.png");
+            botao.setIcon(agua);
             jogador.pontosAdd();
         }
         double sorte = Math.random();

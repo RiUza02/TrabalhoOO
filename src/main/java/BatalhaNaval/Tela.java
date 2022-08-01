@@ -228,22 +228,22 @@ public class Tela extends JFrame {
         int x = bot.getX();
         int y = bot.getY();
         if (bot.getCampo().getMapaPosicaoJogador(x, y) != 0) {
-            botoesBot[x][y].setText("-1");
-        }
+            botoesBot[x][y].setIcon(new ImageIcon("agu.png")); 
+       }
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 1) {
-            botoesBot[x][y].setText("1");
+            botoesBot[x][y].setIcon(new ImageIcon("Pow.png"));
         }
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 2) {
-            botoesBot[x][y].setText("2");
+            botoesBot[x][y].setIcon(new ImageIcon("Pow.png"));
         }
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 3) {
-            botoesBot[x][y].setText("3");
+            botoesBot[x][y].setIcon(new ImageIcon("Pow.png"));
         }
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 4) {
-            botoesBot[x][y].setText("4");
+            botoesBot[x][y].setIcon(new ImageIcon("Pow.png"));
         }
         if (bot.getCampo().getMapaPosicaoJogador(x, y) == 5) {
-            botoesBot[x][y].setText("5");
+            botoesBot[x][y].setIcon(new ImageIcon("Pow.png"));
         }
         if (bot.achouTudo()) {
             GanhaJogo(2);
