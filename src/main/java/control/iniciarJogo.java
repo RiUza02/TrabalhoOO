@@ -8,7 +8,7 @@ import java.awt.event.*;
 
 public class IniciarJogo implements ActionListener {
 
-    Tela tela;
+    private final Tela tela;
 
     public IniciarJogo(Tela tela) {
         this.tela = tela;

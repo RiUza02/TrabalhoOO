@@ -11,14 +11,12 @@ import model.Jogador;
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
 public class JSON {
-
     public static String toJSON(Jogador jogador) {
         Gson gson = new Gson();
         String json = gson.toJson(jogador);
 
         return json;
     }
-
     public static String toJSON(List<Jogador> jogadores) {
         Gson gson = new Gson();
         String json = gson.toJson(jogadores);

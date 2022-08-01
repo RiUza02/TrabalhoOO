@@ -10,7 +10,7 @@ import static java.lang.System.exit;
 
 public class FechaTela implements MouseListener {
 
-    Tela tela;
+    private final Tela tela;
 
     public FechaTela(Tela tela) {
         this.tela = tela;

@@ -8,8 +8,8 @@ import model.Campo;
 public class BotBurro extends Bot {
 
     private final Campo campo;
-    int x;
-    int y;
+    private int x;
+    private int y;
 
     public BotBurro(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);

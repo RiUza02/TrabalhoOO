@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class ModoDificil implements ActionListener {
 
-    Tela tela;
+    private final Tela tela;
 
     public ModoDificil(Tela tela) {
         this.tela = tela;

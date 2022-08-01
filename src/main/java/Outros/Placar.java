@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Outros;
 
 import BatalhaNaval.Tela;
@@ -10,23 +6,18 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Jogador;
+//yuri Alexsander Sudre Almeida Souza   202065512b
+//Rafaela da Silva Cunha    202065509b
+//Victor Aluisio dos Santos Oliveira    20206509ab
 
-/**
- *
- * @author victo
- */
 public class Placar {
-    
-   /* Tela tela;
+    /* Tela tela;
 
     public Placar(Tela tela) {
         this.tela = tela;
     }
     
     public void windowOpened(WindowEvent e) {
-        
-        
-        
         try {
             String lerArquivo = Arquivo.lerArquivo("dados");
             List<Jogador> jogadores = JSON.toJogadores(lerArquivo);
@@ -39,9 +30,7 @@ public class Placar {
             
             tela.getLista().setModel(modelo);
             tela.repaint();
-            
         } catch (FileNotFoundException ex) {
         }
     }*/
-    
 }

@@ -9,7 +9,6 @@ import model.Jogador;
 //Victor Aluisio dos Santos Oliveira    20206509ab
 
 public class Arquivo {
-
     public static ArrayList<String> lerArquivo(String caminho) throws FileNotFoundException {
         ArrayList<String> conteudo = new ArrayList<String>();
         File arquivo = new File(caminho);
@@ -32,10 +31,8 @@ public class Arquivo {
             for (int i = 0; i < 10; i++) {
                 bwArquivo.write(conteudo.get(i).getNome() + "_____" + conteudo.get(i).getPontos() + '\n');
             }
-
             bwArquivo.close();
             fwArquivo.close();
-
         } catch (IOException e) {
             System.err.println("Erro ao tentar Escrever no arquivo: " + e.toString());
         }

@@ -6,8 +6,8 @@ package model;
 public class Jogador {
 
     private final Campo campo;
-    String nome;
-    int pontos;
+    private String nome;
+    private int pontos;
     
     public Jogador(int quantidadeNavio) {
         campo = new Campo(quantidadeNavio);

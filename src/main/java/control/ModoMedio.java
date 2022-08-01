@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class ModoMedio implements ActionListener {
 
-    Tela tela;
+    private final Tela tela;
 
     public ModoMedio(Tela tela) {
         this.tela = tela;
